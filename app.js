@@ -1,3 +1,4 @@
+const card = document.querySelector(".card");
 
 function Book(name, author, pages, status, uId) {
     this.name = name;
@@ -16,7 +17,7 @@ const book2 = new Book("To Kill a Mockingbird", "Harper Lee", 281, "Unread", 2);
 const book3 = new Book("The Hobbit", "J.R.R. Tolkien", 310, "Reading", 3);
 const book4 = new Book("The Great Gatsby", "F. Scott Fitzgerald", 180, "Read", 4);
 
-const myLibrary = [book1, book2, book3, book4]; 
+const myLibrary = [book1, book2, book3, book4];
 
 function addBookToLibrary() {
     let name = prompt("Enter the name of the book");
@@ -29,30 +30,51 @@ function addBookToLibrary() {
     book1.disp();
 
     myLibrary.push(book1);
+     let newDiv = document.createElement("div");
+        newDiv.style.backgroundColor = "#cbcbd5ff";
+        newDiv.style.color = "#FFE66D";
+        newDiv.style.padding = "20px";
+        newDiv.style.borderRadius = "10px";
+        newDiv.style.margin = "10px 0";
+        newDiv.style.fontSize = "18px";
+        newDiv.style.fontFamily = "Arial, sans-serif";
+
+        newDiv.innerHTML = `
+                        ${myLibrary[myLibrary.length-1].name}<br>
+                        ${myLibrary[myLibrary.length-1].author}<br>
+                        ${myLibrary[myLibrary.length-1].pages}<br>
+                        ${myLibrary[myLibrary.length-1].status}`;
+
+        card.appendChild(newDiv);
+
 }
-addBookToLibrary();
 console.log(myLibrary[0]);
 
-const card = document.querySelector(".card");
 
-for (let i = 0; i < myLibrary.length; i++) {
-    let newDiv = document.createElement("div");
-    newDiv.style.backgroundColor = "#cbcbd5ff";
-    newDiv.style.color = "#FFE66D";
-    newDiv.style.padding = "20px";
-    newDiv.style.borderRadius = "10px";
-    newDiv.style.margin = "10px 0";
-    newDiv.style.fontSize = "18px";
-    newDiv.style.fontFamily = "Arial, sans-serif";
+function showBooks() {
+    for (let i = 0; i < myLibrary.length; i++) {
+        let newDiv = document.createElement("div");
+        newDiv.style.backgroundColor = "#cbcbd5ff";
+        newDiv.style.color = "#FFE66D";
+        newDiv.style.padding = "20px";
+        newDiv.style.borderRadius = "10px";
+        newDiv.style.margin = "10px 0";
+        newDiv.style.fontSize = "18px";
+        newDiv.style.fontFamily = "Arial, sans-serif";
 
-    newDiv.innerHTML = `
-  ${myLibrary[i].name}<br>
-  ${myLibrary[i].author}<br>
-  ${myLibrary[i].pages}<br>
-  ${myLibrary[i].status}
-`;
+        newDiv.innerHTML = `
+                        ${myLibrary[i].name}<br>
+                        ${myLibrary[i].author}<br>
+                        ${myLibrary[i].pages}<br>
+                        ${myLibrary[i].status}`;
 
-    card.appendChild(newDiv);
+        card.appendChild(newDiv);
+    }
+
 }
+showBooks();
+const btn = document.querySelector("#btn");
 
-
+btn.addEventListener("click", () => {
+    addBookToLibrary();
+})
