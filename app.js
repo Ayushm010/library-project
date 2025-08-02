@@ -74,7 +74,8 @@ function showBooks() {
 }
 showBooks();
 const btn = document.querySelector("#btn");
+const inputBox = document.getElementById("input-box");
 
 btn.addEventListener("click", () => {
-    addBookToLibrary();
+    inputBox.showModal()
 })
