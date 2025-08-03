@@ -9,17 +9,21 @@
 </head>
 
 <body>
-    <div class="header">
-        <p>Library</p>
+   <div class="container">
+     <div class="header">
+        <h1>Library</h1>
         <input type="search" placeholder="Search books">
-        <button id="btn">Add book</button>
+        <button id="btn">+ Add book</button>
     </div>
     <div class="card">
     </div>
 
     <dialog id="input-box" closedby="any">
         <form method="dialog" id="bookForm">
-            <h1>Add Book</h1>
+           <div class="form-head">
+             <h2>Add Book</h2>
+             <img src="img/close-button.svg" alt="close-button" id="close" class="svg-logo">
+           </div>
 
             <div>
                 <label for="name">Name</label><br>
@@ -48,8 +52,8 @@
                
                  <button type="submit">Add</button>
             </div>
-        </form> <button id="cancelBtn">Cancel</button>
     </dialog>
+   </div>
 
     <script src="app.js"></script>
 </body>
