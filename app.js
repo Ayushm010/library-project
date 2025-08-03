@@ -19,33 +19,31 @@ const book4 = new Book("The Great Gatsby", "F. Scott Fitzgerald", 180, "Read", 4
 
 const myLibrary = [book1, book2, book3, book4];
 
-function addBookToLibrary() {
-    let name = prompt("Enter the name of the book");
-    let author = prompt("Enter the name of the author");
-    let pages = prompt("Enter the no of pages");
-    let status = prompt("read/not yet?");
+function addBookToLibrary(name, author, pages, status) {
+
     let uId = crypto.randomUUID();
 
-    let book1 = new Book(name, author, pages, status, uId);
-    book1.disp();
+    let book = new Book(name, author, pages, status, uId);
+    book.disp();
 
-    myLibrary.push(book1);
-     let newDiv = document.createElement("div");
-        newDiv.style.backgroundColor = "#cbcbd5ff";
-        newDiv.style.color = "#FFE66D";
-        newDiv.style.padding = "20px";
-        newDiv.style.borderRadius = "10px";
-        newDiv.style.margin = "10px 0";
-        newDiv.style.fontSize = "18px";
-        newDiv.style.fontFamily = "Arial, sans-serif";
+    myLibrary.push(book);
+    const newDiv = document.createElement("div");
+    newDiv.style.backgroundColor = "white";
+    newDiv.style.color = "#060606ff";
+    newDiv.style.padding = "20px";
+    newDiv.style.border = "2px solid gray"
+    newDiv.style.borderRadius = "10px";
+    newDiv.style.margin = "10px 0";
+    newDiv.style.fontSize = "18px";
+    newDiv.style.fontFamily = "Arial, sans-serif";
 
-        newDiv.innerHTML = `
-                        ${myLibrary[myLibrary.length-1].name}<br>
-                        ${myLibrary[myLibrary.length-1].author}<br>
-                        ${myLibrary[myLibrary.length-1].pages}<br>
-                        ${myLibrary[myLibrary.length-1].status}`;
+    newDiv.innerHTML = `
+                        ${myLibrary[myLibrary.length - 1].name}<br>
+                        ${myLibrary[myLibrary.length - 1].author}<br>
+                        ${myLibrary[myLibrary.length - 1].pages}<br>
+                        ${myLibrary[myLibrary.length - 1].status}`;
 
-        card.appendChild(newDiv);
+    card.appendChild(newDiv);
 
 }
 console.log(myLibrary[0]);
@@ -54,8 +52,9 @@ console.log(myLibrary[0]);
 function showBooks() {
     for (let i = 0; i < myLibrary.length; i++) {
         let newDiv = document.createElement("div");
-        newDiv.style.backgroundColor = "#cbcbd5ff";
-        newDiv.style.color = "#FFE66D";
+        newDiv.style.backgroundColor = "white";
+        newDiv.style.color = "#060606ff";
+        newDiv.style.border = "2px solid gray"
         newDiv.style.padding = "20px";
         newDiv.style.borderRadius = "10px";
         newDiv.style.margin = "10px 0";
@@ -75,7 +74,29 @@ function showBooks() {
 showBooks();
 const btn = document.querySelector("#btn");
 const inputBox = document.getElementById("input-box");
+const form = document.getElementById("bookForm");
+const closeBtn = document.getElementById("close")
+
 
 btn.addEventListener("click", () => {
     inputBox.showModal()
 })
+
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const name = document.getElementById("name").value;
+    const author = document.getElementById("author").value;
+    const pages = document.getElementById("pages").value;
+    const status = document.getElementById("status").value;
+
+    console.log(name);
+    addBookToLibrary(name, author, pages, status);
+
+    inputBox.close();
+    form.reset();
+});
+
+
+document.getElementById("cancelBtn").addEventListener("click", () => {
+    document.getElementById("input-box").close();
+});
